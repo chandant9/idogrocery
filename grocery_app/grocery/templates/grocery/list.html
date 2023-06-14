@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Grocery List</title>
+</head>
+<body>
+    <h1>Grocery List</h1>
+    <ul>
+        {% for grocery in groceries %}
+        <li>
+            <a href="/detail/{{ grocery.id }}/">{{ grocery.name }}</a>
+            - Group: {{ grocery.group }}, Quantity: {{ grocery.quantity }},
+            Price: ${{ grocery.price }}, Expiration Date: {{ grocery.expiration_date }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
