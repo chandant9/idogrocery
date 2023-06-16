@@ -1,7 +1,8 @@
 from django import forms
 from .models import GroceryItem
 
+
 class GroceryItemForm(forms.ModelForm):
     class Meta:
         model = GroceryItem
-        fields = ['name', 'price']
+        fields = ['name', 'group', 'quantity', 'price', 'expiration_date']
