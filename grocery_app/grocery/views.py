@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from .models import GroceryItem
 from django.http import JsonResponse
+from .forms import GroceryItemForm
 
 # Creating views below as required
 
 
 def grocery_list(request):
+    form = GroceryItemForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('grocery_list')
     groceries = GroceryItem.objects.all()
-    print(groceries)
-    return render(request, 'grocery/list.html', {'groceries': groceries})
+    return render(request, 'grocery/list.html', {'groceries': groceries, 'form': form})
 
 
 def grocery_detail(request, item_id):
