@@ -5,6 +5,7 @@ UNIT_CHOICES = (
     ('g', 'Grams'),
     ('kg', 'Kilograms'),
     ('L', 'Litres'),
+    ('packs', 'Packs'),
 )
 
 # Creating models below, more models can be added to increase app features.
