@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
+    <!-- {{ form.media }} -->
     <meta charset="UTF-8">
     <title>Grocery List</title>
 </head>
@@ -9,7 +10,31 @@
     <h1>Grocery List</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <!-- {{ form.as_p }} -->
+        <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">Name:</label>
+        <input type="text" class="form-control" id="{{ form.name.id_for_label }}" name="{{ form.name.html_name }}" value="{{ form.name.value|default:'' }}">
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.group.id_for_label }}">Group:</label>
+            <input type="text" class="form-control" id="{{ form.group.id_for_label }}" name="{{ form.group.html_name }}" value="{{ form.group.value|default:'' }}">
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.quantity.id_for_label }}">Quantity:</label>
+            <input type="number" class="form-control" id="{{ form.quantity.id_for_label }}" name="{{ form.quantity.html_name }}" value="{{ form.quantity.value|default:'' }}">
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.price.id_for_label }}">Price:</label>
+            <input type="number" step="0.01" class="form-control" id="{{ form.price.id_for_label }}" name="{{ form.price.html_name }}" value="{{ form.price.value|default:'' }}" min="0" max="9999999.99">
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.expiration_date.id_for_label }}">Expiration Date:</label>
+            <input type="date" class="form-control" id="{{ form.expiration_date.id_for_label }}" name="{{ form.expiration_date.html_name }}" value="{{ form.expiration_date.value|default:'' }}">
+        </div>
         <button type="submit">Add Grocery</button>
     </form>
     <ul>

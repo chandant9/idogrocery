@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'grocery.apps.GroceryConfig',
+    'bootstrap_datepicker_plus',
+    'tempus_dominus',
 ]
 
 MIDDLEWARE = [
