@@ -5,6 +5,16 @@
     <!-- {{ form.media }} -->
     <meta charset="UTF-8">
     <title>Grocery List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width = 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
     <h1>Grocery List</h1>
@@ -33,6 +43,7 @@
         <br>
         <br>
     </form>
+
     <table>
         <thead>
             <tr>
@@ -42,23 +53,26 @@
                 <th>Unit</th>
                 <th>Price</th>
                 <th>Expiry Date</th>
+                <th>User Options</th>
             </tr>
         </thead>
         <tbody>
             {% for grocery in groceries %}
             <tr>
-                <td><a href="{% url 'grocery_detail' item_id=grocery.id %}">{{ grocery.name }}</a></td>
+                <td>{{ grocery.name }}</td>
                 <td>{{ grocery.get_category_display }}</td>
                 <td>{{ grocery.quantity }}</td>
                 <td>{{ grocery.get_unit_display }}</td>
                 <td>${{ grocery.price }}</td>
                 <td>{{ grocery.expiration_date }}</td>
-                <td><a href="{% url 'grocery_edit' grocery.id %}">Edit</a></td>
                 <td>
-                    <form action="{% url 'grocery_delete' item_id=grocery.id %}" method="POST">
+                    <a href="{% url 'grocery_detail' item_id=grocery.id %}">Details</a>
+                    <a href="{% url 'grocery_edit' item_id=grocery.id %}">Edit</a>
+                    <a href="{% url 'grocery_delete' item_id=grocery.id %}">Delete</a>
+                    <!-- <form action="{% url 'grocery_delete' item_id=grocery.id %}" method="POST">
                         {% csrf_token %}
                         <button type="submit">Delete</button>
-                    </form>
+                    </form> -->
                 </td>
             </tr>
             {% endfor %}
