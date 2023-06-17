@@ -15,31 +15,30 @@ def grocery_list(request):
 
     # To calculate total quantity and prices on both total and category level
     category_totals = dict()
-    total_quantity = 0
     total_price = 0
+    total_items = 0
 
     # Iterating through each item.
     for grocery in groceries:
         category = grocery.category
-        quantity = grocery.quantity
         price = grocery.price
 
         # Assigning values for each category for quantity and price and summing it up
         if category in category_totals:
-            category_totals[category]['quantity'] += quantity
+            category_totals[category]['items'] += 1
             category_totals[category]['price'] += price
         else:
-            category_totals[category] = {'quantity': quantity, 'price': price}
+            category_totals[category] = {'items': 1, 'price': price}
 
         # calculating overall totals here
-        total_quantity += quantity
         total_price += price
+        total_items += 1
 
     context = {
         'form': form,
         'groceries': groceries,
         'category_totals': category_totals,
-        'total_quantity': total_quantity,
+        'total_items': total_items,
         'total_price': total_price,
     }
     return render(request, 'grocery/list.html', context)
