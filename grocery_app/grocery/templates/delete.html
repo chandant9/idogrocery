@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h2>Delete Grocery Item</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+      <a href="{% url 'grocery_list' %}">Go Back</a>
+    <button type="delete">Delete</button>
+  </form>
+</body>

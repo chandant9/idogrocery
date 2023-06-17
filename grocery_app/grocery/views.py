@@ -33,8 +33,16 @@ def grocery_edit(request, item_id):
     else:
         form = GroceryItemForm(instance=grocery)
 
-
     return render(request, 'grocery/edit.html', {'form': form})
+
+
+def grocery_delete(request, item_id):
+    grocery = get_object_or_404(GroceryItem, pk=item_id)
+    if request.method == 'POST':
+        grocery.delete()
+        return redirect('grocery_list')
+
+    return render(request, 'grocery/list.html', {'grocery': grocery})
 
 
 def cart_json(request):

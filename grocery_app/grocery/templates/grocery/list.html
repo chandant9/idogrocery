@@ -54,6 +54,12 @@
                 <td>${{ grocery.price }}</td>
                 <td>{{ grocery.expiration_date }}</td>
                 <td><a href="{% url 'grocery_edit' grocery.id %}">Edit</a></td>
+                <td>
+                    <form action="{% url 'grocery_delete' item_id=grocery.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
