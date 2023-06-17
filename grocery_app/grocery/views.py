@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import GroceryItem
 from django.http import JsonResponse
 from .forms import GroceryItemForm
@@ -21,6 +21,20 @@ def grocery_detail(request, item_id):
         'grocery': grocery,
     }
     return render(request, 'grocery/detail.html', context)
+
+
+def grocery_edit(request, item_id):
+    grocery = get_object_or_404(GroceryItem, pk=item_id)
+    if request.method == 'POST':
+        form = GroceryItemForm(request.POST, instance=grocery)
+        if form.is_valid():
+            form.save()
+            return redirect('grocery_list')
+    else:
+        form = GroceryItemForm(instance=grocery)
+
+
+    return render(request, 'grocery/edit.html', {'form': form})
 
 
 def cart_json(request):

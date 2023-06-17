@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('list/', views.grocery_list, name='grocery_list'),
     path('detail/<int:item_id>/', views.grocery_detail, name='grocery_detail'),
+    path('edit/<int:item_id>/', views.grocery_edit, name='grocery_edit'),
     path('cart.json', views.cart_json, name='cart_json'),
 ]

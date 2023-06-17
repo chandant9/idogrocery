@@ -28,17 +28,35 @@
             <label for="{{ form.expiration_date.id_for_label }}">Expiration Date:</label>
             <input type="date" class="form-control" id="{{ form.expiration_date.id_for_label }}" name="{{ form.expiration_date.html_name }}" value="{{ form.expiration_date.value|default:'' }}">
         </div>
+        <br>
         <button type="submit">Add Grocery</button>
+        <br>
+        <br>
     </form>
-    <ul>
-        {% for grocery in groceries %}
-        <li>
-            <a href="{% url 'grocery_detail' item_id=grocery.id %}">{{ grocery.name }}</a>
-            - Group: {{ grocery.get_category_display }}, Quantity: {{ grocery.quantity }} {{ grocery.get_unit_display }},
-            Price: ${{ grocery.price }}, Expiration Date: {{ grocery.expiration_date }}
-
-        </li>
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Price</th>
+                <th>Expiry Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grocery in groceries %}
+            <tr>
+                <td><a href="{% url 'grocery_detail' item_id=grocery.id %}">{{ grocery.name }}</a></td>
+                <td>{{ grocery.get_category_display }}</td>
+                <td>{{ grocery.quantity }}</td>
+                <td>{{ grocery.get_unit_display }}</td>
+                <td>${{ grocery.price }}</td>
+                <td>{{ grocery.expiration_date }}</td>
+                <td><a href="{% url 'grocery_edit' grocery.id %}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
