@@ -45,6 +45,35 @@
     </form>
 
     <table>
+        <caption style="font-weight: bold;">Category wise Summary & Totals</caption>
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Total Items</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category, totals in category_totals.items %}
+            <tr>
+                <th>{{ category }}</th>
+                <th>{{ totals.items }}</th>
+                <th>{{ totals.price }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Grand Total:</th>
+                <th>{{ total_items }}</th>
+                <th>${{ total_price }}</th>
+            </tr>
+        </tfoot>
+    </table>
+    <br>
+    <br>
+    <table>
+        <caption style="font-weight: bold;">List of Items purchased</caption>
         <thead>
             <tr>
                 <th>Item Name</th>
@@ -77,33 +106,6 @@
             </tr>
             {% endfor %}
         </tbody>
-    </table>
-    <br>
-    <br>
-    <table>
-        <thead>
-            <tr>
-                <th>Category Name</th>
-                <th>Total Items</th>
-                <th>Total Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for category, totals in category_totals.items %}
-            <tr>
-                <th>{{ category }}</th>
-                <th>{{ totals.items }}</th>
-                <th>{{ totals.price }}</th>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Grand Total:</th>
-                <th>{{ total_items }}</th>
-                <th>${{ total_price }}</th>
-            </tr>
-        </tfoot>
     </table>
 </body>
 </html>
