@@ -12,6 +12,9 @@
         Quantity: {{ grocery.quantity }} {{ grocery.unit }}<br>
         Price: ${{ grocery.price }}<br>
         Expiration Date: {{ grocery.expiration_date }}
+        <br>
+        <br>
+        <a href="{% url 'grocery_list' %}">Go Back</a>
     </p>
 </body>
 </html>

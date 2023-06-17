@@ -17,7 +17,10 @@ def grocery_list(request):
 
 def grocery_detail(request, item_id):
     grocery = GroceryItem.objects.get(pk=item_id)
-    return render(request, 'grocery/detail.html', {'grocery': grocery})
+    context = {
+        'grocery': grocery,
+    }
+    return render(request, 'grocery/detail.html', context)
 
 
 def cart_json(request):

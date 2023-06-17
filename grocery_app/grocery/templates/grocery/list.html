@@ -33,9 +33,10 @@
     <ul>
         {% for grocery in groceries %}
         <li>
-            <a href="/detail/{{ grocery.id }}/">{{ grocery.name }}</a>
+            <a href="{% url 'grocery_detail' item_id=grocery.id %}">{{ grocery.name }}</a>
             - Group: {{ grocery.get_category_display }}, Quantity: {{ grocery.quantity }} {{ grocery.get_unit_display }},
             Price: ${{ grocery.price }}, Expiration Date: {{ grocery.expiration_date }}
+
         </li>
         {% endfor %}
     </ul>
