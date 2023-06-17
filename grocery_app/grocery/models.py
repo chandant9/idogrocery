@@ -8,12 +8,29 @@ UNIT_CHOICES = (
     ('packs', 'Packs'),
 )
 
+CAT_CHOICES = (
+    ('', 'Select Category'),
+    ('FR-VG', 'Fruits & Vegetables'),
+    ('DAI-EG', 'Dairy & Eggs'),
+    ('CHS', 'Cheese'),
+    ('BAK', 'Bakery'),
+    ('DR', 'Drinks'),
+    ('FRZ', 'Frozen food'),
+    ('SN-CAN', 'Snacks & Candies'),
+    ('MT-SF', 'Meat & Seafood'),
+    ('CLS', 'Cleaning Supplies'),
+    ('PERS', 'Personal Care'),
+    ('HLTH', 'Health'),
+    ('MISC', 'Miscellaneous'),
+)
+
+
 # Creating models below, more models can be added to increase app features.
 
 
 class GroceryItem(models.Model):
     name = models.CharField(max_length=100)
-    group = models.CharField(max_length=100)
+    category = models.CharField(max_length=7, choices=CAT_CHOICES, default='N/A')
     quantity = models.PositiveIntegerField(default=0)
     unit = models.CharField(max_length=50, choices=UNIT_CHOICES, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)

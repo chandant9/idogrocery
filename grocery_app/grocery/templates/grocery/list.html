@@ -16,11 +16,7 @@
         <input type="text" class="form-control" id="{{ form.name.id_for_label }}" name="{{ form.name.html_name }}" value="{{ form.name.value|default:'' }}" autocomplete="off">
         </div>
 
-        <div class="form-group">
-            <label for="{{ form.group.id_for_label }}">Category:</label>
-            <input type="text" class="form-control" id="{{ form.group.id_for_label }}" name="{{ form.group.html_name }}" value="{{ form.group.value|default:'' }}" autocomplete="off">
-        </div>
-
+        {{ form.category.label }}: {{ form.category }}<br>
         {{ form.quantity.label }}: {{ form.quantity }} {{ form.unit }}<br>
 
         <div class="form-group">
@@ -38,7 +34,7 @@
         {% for grocery in groceries %}
         <li>
             <a href="/detail/{{ grocery.id }}/">{{ grocery.name }}</a>
-            - Group: {{ grocery.group }}, Quantity: {{ grocery.quantity }} {{ grocery.get_unit_display }},
+            - Group: {{ grocery.get_category_display }}, Quantity: {{ grocery.quantity }} {{ grocery.get_unit_display }},
             Price: ${{ grocery.price }}, Expiration Date: {{ grocery.expiration_date }}
         </li>
         {% endfor %}

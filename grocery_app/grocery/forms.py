@@ -8,5 +8,5 @@ class GroceryItemForm(forms.ModelForm):
 
     class Meta:
         model = GroceryItem
-        fields = ['name', 'group', 'quantity', 'unit', 'price', 'expiration_date']
+        fields = ['name', 'category', 'quantity', 'unit', 'price', 'expiration_date']
         expiration_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
