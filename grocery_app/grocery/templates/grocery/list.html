@@ -94,14 +94,14 @@
                 <td>{{ grocery.get_unit_display }}</td>
                 <td>${{ grocery.price }}</td>
                 <td>{{ grocery.expiration_date }}</td>
-                <td>
-                    <a href="{% url 'grocery_detail' item_id=grocery.id %}">Details</a>
-                    <a href="{% url 'grocery_edit' item_id=grocery.id %}">Edit</a>
-                    <a href="{% url 'grocery_delete' item_id=grocery.id %}">Delete</a>
-                    <!-- <form action="{% url 'grocery_delete' item_id=grocery.id %}" method="POST">
+                <td style="display: flex; align-items: center;">
+                    <a href="{% url 'grocery_detail' item_id=grocery.id %}" style="margin-right: 10px;">Details</a>
+                    <a href="{% url 'grocery_edit' item_id=grocery.id %}" style="margin-right: 10px;">Edit</a>
+                    <form action="{% url 'grocery_delete' item_id=grocery.id %}" method="POST">
                         {% csrf_token %}
                         <button type="submit">Delete</button>
-                    </form> -->
+                    </form>
+                    <!-- <a href="{% url 'grocery_delete' item_id=grocery.id %}">Delete</a> Cannot use a link to delete without javascript fetch() functionality-->
                 </td>
             </tr>
             {% endfor %}
